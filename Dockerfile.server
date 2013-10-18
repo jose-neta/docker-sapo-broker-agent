@@ -1,0 +1,42 @@
+FROM ubuntu
+MAINTAINER Jose Pinheiro Neta <jose.neta@gmail.com>
+
+## Build the image 
+#
+#     sudo docker build -rm -t="jpn/sapo-broker-server" .
+#
+## Start the container and check if everything went in proper place.
+#
+#     sudo docker run -t -i jpn/sapo-broker-server /bin/bash` 
+#
+## Start the container in daemon mode
+#
+#     sudo docker run -d -t jpn/sapo-broker-server /bin/bash
+#
+
+RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
+RUN apt-get update
+RUN apt-get upgrade
+RUN apt-get clean
+
+# Install some utils
+RUN apt-get install -y -q curl
+RUN apt-get install -y -q wget
+RUN apt-get install -y -q git
+RUN apt-get install -y -q vim
+RUN apt-get clean
+
+# Install SAPO Java
+ADD sapo-jvm_1.7.0.21_amd64.deb /
+RUN dpkg -i sapo-jvm_1.7.0.21_amd64.deb
+RUN apt-get clean
+ENV PATH $PATH:/opt/sapojvm/bin
+
+# Install SAPO Broker
+ADD sapo-broker-4.0.44 /servers/broker
+
+# SAPO Broker port
+expose 3315
+
+# Run SAPO Broker
+CMD ["/servers/broker/bin/broker.sh"]

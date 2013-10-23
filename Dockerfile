@@ -37,7 +37,7 @@ RUN apt-get clean
 # produce/listen in 127.0.0.1:3323
 # 
 # Install SAPO Broker
-ADD https://cld.pt/dl/download/67bd8c43-be1c-4d04-a2be-352f275aab4e/sapo-broker-4.0.44.tar.gz?public=67bd8c43-be1c-4d04-a2be-352f275aab4e /
+ADD https://dl-web.meocloud.pt/dlweb/download/DONOTSYNC/SAPO/sapo-broker-4.0.44.tar.gz?public=35139098-49e8-4c18-bfc8-f8f40701b9ae /
 RUN mkdir /servers ;\
   cd /servers ;\ 
   mv ../sapo-broker-4.0.44.tar.gz . ;\
@@ -45,7 +45,7 @@ RUN mkdir /servers ;\
   mv sapo-broker-4.0.44 broker;
 
 # Install SAPO Java
-ADD https://dl-web.meocloud.pt/dlweb/download/SAPO/sapo-jvm_1.7.0.21_amd64.deb?public=8f5bf859-26ba-4e6b-b665-4e872707edc4 /
+ADD https://dl-web.meocloud.pt/dlweb/download/DONOTSYNC/SAPO/sapo-jvm_1.7.0.21_amd64.deb?public=83a4e67f-af6d-4d60-ab6b-5b1b7bc910e8 /
 RUN dpkg -i sapo-jvm_1.7.0.21_amd64.deb
 RUN apt-get clean
 ENV PATH $PATH:/opt/sapojvm/bin

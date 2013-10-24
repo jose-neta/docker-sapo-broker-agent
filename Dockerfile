@@ -51,7 +51,7 @@ RUN apt-get clean
 ENV PATH $PATH:/opt/sapojvm/bin
 
 # SAPO Broker port
-expose 3323:3323
+expose 3323:3323 3322:3322 3380:3380
 
 # Run SAPO Broker
 ENTRYPOINT ["/servers/broker/bin/broker.sh"]
